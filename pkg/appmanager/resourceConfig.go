@@ -1314,6 +1314,19 @@ func (appMgr *Manager) createRSConfigFromIngress(
 		appRootMap = parseAppRootURLRewriteAnnotations(appRoot)
 	}
 
+        // Handle rule annoation, which adds references to iRules defined in other
+        // partitions, usually /Common, to the virtual server
+        if irule, ok := ing.ObjectMeta.Annotations[f5VsRulesAnnotation]; ok == true {
+                parts := strings.Split(irule, ",")
+                for i := range parts {
+                        if len( strings.Split(strings.TrimSpace(strings.TrimPrefix(parts[i], "/")), "/")) != 2 {
+                                log.Warningf("iRule reference '%v' requires format of /Partition/iRule.", parts[i])
+                        } else {
+                                cfg.Virtual.AddIRule( strings.TrimSpace(parts[i]) )
+                        }
+                }
+        }
+
 	// Create our pools and policy/rules based on the Ingress
 	var pools Pools
 	var plcy *Policy
