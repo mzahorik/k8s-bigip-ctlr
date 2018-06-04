@@ -1329,21 +1329,21 @@ func (appMgr *Manager) createRSConfigFromIngress(
 
         // Handle default persistence profile annoation, which adds references to
         // persistent profiles defined in other partitions, usually /Common, to the virtual server
-        if irule, ok := ing.ObjectMeta.Annotations[f5VsDefaultPersistAnnotation]; ok == true {
-                if len( strings.Split(strings.TrimSpace(strings.TrimPrefix(parts[i], "/")), "/")) != 2 {
-                        log.Warningf("defaultPersist reference '%v' requires format of /Partition/profile.", parts[i])
+        if defaultPersist, ok := ing.ObjectMeta.Annotations[f5VsDefaultPersistAnnotation]; ok == true {
+                if len( strings.Split(strings.TrimSpace(strings.TrimPrefix(defaultPersist, "/")), "/")) != 2 {
+                        log.Warningf("defaultPersist reference '%v' requires format of /Partition/profile.", defaultPersist) 
                 } else {
-                        cfg.Virtual.DefaultPersist = strings.TrimSpace(parts[i])
+                        cfg.Virtual.DefaultPersist = defaultPersist
                 }
         }
 
         // Handle fallback persistence profile annoation, which adds references to
         // persistent profiles defined in other partitions, usually /Common, to the virtual server
-        if irule, ok := ing.ObjectMeta.Annotations[f5VsFallbackPersistAnnotation]; ok == true {
-                if len( strings.Split(strings.TrimSpace(strings.TrimPrefix(parts[i], "/")), "/")) != 2 {
-                        log.Warningf("fallbackPersist reference '%v' requires format of /Partition/profile.", parts[i])
+        if fallbackPersist, ok := ing.ObjectMeta.Annotations[f5VsFallbackPersistAnnotation]; ok == true {
+                if len( strings.Split(strings.TrimSpace(strings.TrimPrefix(fallbackPersist, "/")), "/")) != 2 {
+                        log.Warningf("fallbackPersist reference '%v' requires format of /Partition/profile.", fallbackPersist)
                 } else {
-                        cfg.Virtual.FallbackPersist = strings.TrimSpace(parts[i])
+                        cfg.Virtual.FallbackPersist = fallbackPersist
                 }
         }
 
