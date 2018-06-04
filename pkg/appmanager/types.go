@@ -84,6 +84,8 @@ type (
 		IRules                []string              `json:"rules,omitempty"`
 		Profiles              ProfileRefs           `json:"profiles,omitempty"`
 		Description           string                `json:"description,omitempty"`
+		DefaultPersist        string                `json:"persist,omitempty"`
+		FallbackPersist       string                `json:"fallbackPersistence,omitempty"`
 		VirtualAddress        *virtualAddress       `json:"-"`
 	}
 	Virtuals []Virtual
