@@ -598,6 +598,10 @@ Supported Ingress Annotations
 | virtual-server.f5.com/rules                   | string      | Optional  | Comma delimited string of iRules already defined on the F5, usually in the Common   | N/A         |                                         |
 |                                               |             |           | parition, such as /Common/add_X_Client_IP, to be attached to the virtual server     |             |                                         |
 +-----------------------------------------------+-------------+-----------+-------------------------------------------------------------------------------------+-------------+-----------------------------------------+
+| virtual-server.f5.com/defaultPersist          | string      | Optional  | Default persistence profile to attach to virtual server, such as /Common/ssl        |             |                                         |
++-----------------------------------------------+-------------+-----------+-------------------------------------------------------------------------------------+-------------+-----------------------------------------+
+| virtual-server.f5.com/fallbackPersist         | string      | Optional  | Fallback persistence profile to attach to virtual server, such as /Common/ssl       |             |                                         |
++-----------------------------------------------+-------------+-----------+-------------------------------------------------------------------------------------+-------------+-----------------------------------------+
 
 Ingress Health Monitors
 ```````````````````````
