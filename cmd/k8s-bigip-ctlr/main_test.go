@@ -675,7 +675,7 @@ var _ = Describe("Main Tests", func() {
 
 			fileMsg := make([]byte, 27)
 			f.Read(fileMsg)
-			timeCount = 1000
+			timeCount = 5000
 			for (string(fileMsg) != string("Ready for KeyboardInterrupt")) &&
 				(timeCount > 0) {
 				time.Sleep(time.Millisecond)
